@@ -20,6 +20,7 @@ namespace PlanningApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IBus _bus = null;
         public MainWindow()
         {
             InitializeComponent();
