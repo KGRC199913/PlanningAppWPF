@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,16 @@ namespace PlanningApp
     public partial class MainWindow : Window
     {
         private IBus _bus = null;
+        private readonly BindingList<Plan> _plans = new BindingList<Plan>();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public BindingList<Plan> Plans
+        {
+            get => _plans;
         }
     }
 }

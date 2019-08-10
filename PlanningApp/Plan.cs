@@ -11,13 +11,22 @@ namespace PlanningApp
         Emergence
     }
 
+    public enum PlanState
+    {
+        ToDo,
+        Doing,
+        Done,
+        Canceled
+    }
+
     public class Plan : ViewModelBase
     {
         private string _detail;
         private DateTime _startDateTime;
         private DateTime _endDateTime;
         private PlanPriorityLevel _priorityLevel;
-        private bool _isDone;
+        private PlanState _state;
+        private bool _isDisable;
 
         public string Detail
         {
@@ -59,12 +68,22 @@ namespace PlanningApp
             }
         }
 
-        public bool IsDone
+        public bool IsDisable
         {
-            get => _isDone;
+            get => _isDisable;
             set
             {
-                _isDone = value;
+                _isDisable = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public PlanState State
+        {
+            get => _state;
+            set
+            {
+                _state = value;
                 OnPropertyChanged();
             }
         }
