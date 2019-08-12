@@ -19,6 +19,7 @@ namespace PlanningApp
         Canceled
     }
 
+    [Serializable]
     public class Plan : ViewModelBase
     {
         private string _detail;

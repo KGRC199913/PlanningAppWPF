@@ -23,9 +23,29 @@ namespace PlanningApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IPresentation _presentation = null;
         public MainWindow()
         {
             InitializeComponent();
+            //_presentation = new Presentation(new PlanningBus(new BinaryDao()));
+            //IDao dao = new BinaryDao();
+            //Hasher hasher = new Hasher();
+            //User testUser = new User()
+            //{
+            //    Username = "nekoshota",
+            //    HashedPassword = hasher.ComputeSha256Hash("123456")
+            //};
+            //dao.AddNewUser(testUser);
+            //var plans = dao.LoadPlans(testUser);
+            //Plan testPlan = new Plan()
+            //{
+            //    Detail = "Meow meow",
+            //    StartDateTime = new DateTime(2019, 3, 10),
+            //    EndDateTime = new DateTime(2019, 10, 12),
+            //    PriorityLevel = PlanPriorityLevel.Normal
+            //};
+            //plans.Add(testPlan);
+            //dao.SavePlans(testUser, plans);
         }
 
     }

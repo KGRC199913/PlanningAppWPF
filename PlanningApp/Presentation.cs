@@ -6,6 +6,7 @@ namespace PlanningApp
     {
         private IBus _bus = null;
         private BindingList<Plan> _displayPlans = new BindingList<Plan>();
+        private User _currentUser;
 
         public Presentation(IBus bus)
         {
@@ -20,6 +21,25 @@ namespace PlanningApp
                 _displayPlans = value;
                 OnPropertyChanged();
             }
+        }
+
+        public User CurrentUser {
+            get => _currentUser;
+        }
+
+        public void Login()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Logout()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Signup()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

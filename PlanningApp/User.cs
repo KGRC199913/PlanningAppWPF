@@ -1,5 +1,8 @@
-﻿namespace PlanningApp
+﻿using System;
+
+namespace PlanningApp
 {
+    [Serializable]
     public class User
     {
         public string Username { get; set; }

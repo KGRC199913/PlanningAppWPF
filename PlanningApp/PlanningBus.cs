@@ -79,16 +79,6 @@ namespace PlanningApp
             _plans?.RemoveAt(index);
         }
 
-        public void Export()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Import()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SettingSave()
         {
             throw new NotImplementedException();
@@ -111,7 +101,7 @@ namespace PlanningApp
 
         public bool Login(User loginUser)
         {
-            if (!_dao.checkUserExist(loginUser)) return false;
+            if (!_dao.CheckUserExist(loginUser)) return false;
             _currentUser = loginUser;
             _plans = _dao.LoadPlans(_currentUser);
             return true;
@@ -120,13 +110,14 @@ namespace PlanningApp
 
         public bool Signup(User signupUser)
         {
-            return !_dao.checkUserExist(signupUser) && _dao.AddNewUser(signupUser);
+            return !_dao.CheckUserExist(signupUser) && _dao.AddNewUser(signupUser);
         }
 
         public bool Logout()
         {
             _dao.SavePlans(_currentUser, _plans);
             _currentUser = null;
+            _plans = null;
             return true;
         }
     }

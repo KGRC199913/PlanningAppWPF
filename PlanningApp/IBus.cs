@@ -15,8 +15,6 @@ namespace PlanningApp
         BindingList<Plan> GetPlans();
         void AddNewPlan(Plan plan);
         void RemovePlan(int index);
-        void Export(); // TEMP
-        void Import(); // TEMP
         void SettingSave(); // TEMP
         void SettingLoad(); // TEMP
         void DataSave(); // TEMP

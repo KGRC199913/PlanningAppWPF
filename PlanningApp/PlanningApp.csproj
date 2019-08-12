@@ -79,6 +79,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BinaryDao.cs" />
+    <Compile Include="Hasher.cs" />
     <Compile Include="IPresentation.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="PlanningBus.cs" />
