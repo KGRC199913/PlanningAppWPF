@@ -21,5 +21,8 @@ namespace PlanningApp
         void SettingLoad(); // TEMP
         void DataSave(); // TEMP
         void DataLoad(); // TEMP
+        bool Login(User loginUser);
+        bool Signup(User signupUser);
+        bool Logout();
     }
 }

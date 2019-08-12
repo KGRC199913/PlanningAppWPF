@@ -21,32 +21,12 @@ namespace PlanningApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        private IBus _bus = null;
-        private BindingList<Plan> _plans = new BindingList<Plan>();
-
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        public BindingList<Plan> Plans
-        {
-            get => _plans;
-            set
-            {
-                Plans = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

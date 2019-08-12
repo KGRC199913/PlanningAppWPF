@@ -7,8 +7,14 @@ namespace PlanningApp
 {
     public class PlanningBus : IBus
     {
-        BindingList<Plan> _plans = new BindingList<Plan>();
-        private IDao _dao;
+        BindingList<Plan> _plans = null;
+        private IDao _dao = null;
+        private User _currentUser;
+
+        public PlanningBus(IDao dao)
+        {
+            _dao = dao;
+        }
 
         public BindingList<Plan> GetFilteredPlans(PlanFilterMode mode, object filterArg)
         {
@@ -58,16 +64,19 @@ namespace PlanningApp
             return filteredPlans;
         }
 
-        public BindingList<Plan> GetPlans() => _plans;
+        public BindingList<Plan> GetPlans()
+        {
+            return _currentUser != null ? _plans : null;
+        } 
 
         public void AddNewPlan(Plan plan)
         {
-            _plans.Add(plan);
+            _plans?.Add(plan);
         }
 
         public void RemovePlan(int index)
         {
-            _plans.RemoveAt(index);
+            _plans?.RemoveAt(index);
         }
 
         public void Export()
@@ -98,6 +107,27 @@ namespace PlanningApp
         public void DataLoad()
         {
             throw new NotImplementedException();
+        }
+
+        public bool Login(User loginUser)
+        {
+            if (!_dao.checkUserExist(loginUser)) return false;
+            _currentUser = loginUser;
+            _plans = _dao.LoadPlans(_currentUser);
+            return true;
+
+        }
+
+        public bool Signup(User signupUser)
+        {
+            return !_dao.checkUserExist(signupUser) && _dao.AddNewUser(signupUser);
+        }
+
+        public bool Logout()
+        {
+            _dao.SavePlans(_currentUser, _plans);
+            _currentUser = null;
+            return true;
         }
     }
 }

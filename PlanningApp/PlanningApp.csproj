@@ -79,8 +79,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IPresentation.cs" />
+    <Compile Include="Presentation.cs" />
     <Compile Include="PlanningBus.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
