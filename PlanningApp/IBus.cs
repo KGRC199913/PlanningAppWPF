@@ -16,9 +16,7 @@ namespace PlanningApp
         void AddNewPlan(Plan plan);
         void RemovePlan(int index);
         void SettingSave(); // TEMP
-        void SettingLoad(); // TEMP
         void DataSave(); // TEMP
-        void DataLoad(); // TEMP
         bool Login(User loginUser);
         bool Signup(User signupUser);
         bool Logout();

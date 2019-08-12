@@ -14,6 +14,18 @@ namespace PlanningApp
             _dao = dao;
         }
 
+        ~PlanningBus()
+        {
+            if (_currentUser != null)
+            {
+                _dao.SavePlans(_currentUser, _plans);
+            }
+
+            _dao = null;
+            _currentUser = null;
+            _plans = null;
+        }
+
         public BindingList<Plan> GetFilteredPlans(PlanFilterMode mode, object filterArg)
         {
             BindingList<Plan> filteredPlans = new BindingList<Plan>();
@@ -21,7 +33,7 @@ namespace PlanningApp
             {
                 case PlanFilterMode.Content:
                 {
-                        string keyword = (string)filterArg;
+                        var keyword = (string)filterArg;
                         foreach (var it in _plans)
                         {
                             if (it.Detail.Contains(keyword))
@@ -33,7 +45,7 @@ namespace PlanningApp
                     break;
                 case PlanFilterMode.Date:
                 {
-                    DateTime targetDate = (DateTime) filterArg;
+                    var targetDate = (DateTime) filterArg;
                     foreach (var it in _plans)
                     {
                         if (it.EndDateTime.Equals(targetDate) || it.StartDateTime.Equals(targetDate))
@@ -45,7 +57,7 @@ namespace PlanningApp
                     break;
                 case PlanFilterMode.Priority:
                 {
-                    PlanPriorityLevel priority = (PlanPriorityLevel) filterArg;
+                    var priority = (PlanPriorityLevel) filterArg;
                     foreach (var it in _plans)
                     {
                         if (it.PriorityLevel == priority)
@@ -82,19 +94,10 @@ namespace PlanningApp
             throw new NotImplementedException();
         }
 
-        public void SettingLoad()
-        {
-            throw new NotImplementedException();
-        }
-
         public void DataSave()
         {
-            throw new NotImplementedException();
-        }
-
-        public void DataLoad()
-        {
-            throw new NotImplementedException();
+            if (_currentUser == null) return;
+            _dao.SavePlans(_currentUser, _plans);
         }
 
         public bool Login(User loginUser)
