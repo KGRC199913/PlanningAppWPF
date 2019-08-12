@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentWPF, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentWPF.0.7.0\lib\net45\FluentWPF.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.0\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -67,11 +70,18 @@
     <Compile Include="BinaryDao.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="IPresentation.cs" />
+    <Compile Include="mainUserControl.xaml.cs">
+      <DependentUpon>mainUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation.cs" />
     <Compile Include="PlanningBus.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewModelBase.cs" />
+    <Page Include="mainUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
