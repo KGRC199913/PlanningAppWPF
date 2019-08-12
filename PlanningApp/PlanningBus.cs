@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.SQLite;
-using System.Runtime.CompilerServices;
 
 namespace PlanningApp
 {
