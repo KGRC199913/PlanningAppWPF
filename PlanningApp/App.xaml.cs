@@ -91,9 +91,6 @@ namespace PlanningApp
                 case "Warning":
                     _notifyIcon.ShowBalloonTip(timeout, title, message, ToolTipIcon.Warning);
                     break;
-                default:
-                    _notifyIcon.ShowBalloonTip(timeout, title, message, ToolTipIcon.None);
-                    break;
             }
         }
     }
