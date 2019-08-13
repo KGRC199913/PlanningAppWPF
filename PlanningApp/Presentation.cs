@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace PlanningApp
 {
@@ -23,7 +24,8 @@ namespace PlanningApp
             }
         }
 
-        public User CurrentUser {
+        public User CurrentUser
+        {
             get => _currentUser;
         }
 
@@ -40,6 +42,11 @@ namespace PlanningApp
         public void Signup()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void ShowNotification(int timeout, string title, string message, string typeIcon)
+        {
+            App.ShowNotification(timeout, title, message, typeIcon);
         }
     }
 }
