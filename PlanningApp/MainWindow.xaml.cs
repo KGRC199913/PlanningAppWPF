@@ -43,6 +43,10 @@ namespace PlanningApp
             //    Username = "Supercat",
             //    HashedPassword = hasher.ComputeSha256Hash("abcdef")
             //};
+
+            _presentation = new Presentation(new PlanningBus(new BinaryDao()));
+            MainViewContentControl.Content = new MainScreenUserControl();
+            MainViewContentControl.DataContext = _presentation;
         }
 
     }

@@ -72,6 +72,9 @@
     <Compile Include="BinaryDao.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="IPresentation.cs" />
+    <Compile Include="MainScreenUserControl.xaml.cs">
+      <DependentUpon>MainScreenUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="mainUserControl.xaml.cs">
       <DependentUpon>mainUserControl.xaml</DependentUpon>
     </Compile>
@@ -80,6 +83,10 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewModelBase.cs" />
+    <Page Include="MainScreenUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="mainUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
