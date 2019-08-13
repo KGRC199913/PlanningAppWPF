@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace PlanningApp
 {
@@ -9,5 +10,6 @@ namespace PlanningApp
         void Login();
         void Logout();
         void Signup();
+        void ShowNotification(int timeout, string title, string message, string typeIcon);
     }
 }
