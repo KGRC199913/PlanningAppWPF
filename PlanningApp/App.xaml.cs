@@ -24,8 +24,9 @@ namespace PlanningApp
         {
             base.OnStartup(e);
             MainWindow = new MainWindow();
+            MainWindow.Closing += MainWindow_Closing;
 
-            _notifyIcon = new System.Windows.Forms.NotifyIcon();
+            _notifyIcon = new NotifyIcon();
             _notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
             _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             _notifyIcon.Visible = true;
@@ -36,8 +37,7 @@ namespace PlanningApp
 
         private void CreateContextMenu()
         {
-            _notifyIcon.ContextMenuStrip =
-              new System.Windows.Forms.ContextMenuStrip();
+            _notifyIcon.ContextMenuStrip = new ContextMenuStrip();
             _notifyIcon.ContextMenuStrip.Items.Add("Open..").Click += (s, e) => ShowMainWindow();
             _notifyIcon.ContextMenuStrip.Items.Add("Exit").Click += (s, e) => ExitApplication();
         }
