@@ -14,8 +14,9 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800" 
+             >
+    <Grid IsSharedSizeScope="True" UseLayoutRounding="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -23,58 +24,100 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.35*" MinHeight="30" MaxHeight="40"/>
+            <RowDefinition Height="0.5*" />
             <RowDefinition />
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <Border Background="{DynamicResource MaterialDesignDarkSeparatorBackground}" Grid.RowSpan="6" Opacity="0.4" />
-        <Border Background="{DynamicResource MaterialDesignDarkSeparatorBackground}" Grid.Column="2"  Grid.RowSpan="6" Opacity="0.4" />
+      <!--   <Border Background="{DynamicResource MaterialDesignDarkSeparatorBackground}" Grid.RowSpan="6" Opacity="0.4" />
+        <Border Background="{DynamicResource MaterialDesignDarkSeparatorBackground}" Grid.Column="2"  Grid.RowSpan="6" Opacity="0.4" /> -->
         <materialDesign:Card
-            Background="{DynamicResource PrimaryHueDarkBrush}"
-            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-          
-            Grid.Column="0"
-            Grid.Row="1" VerticalAlignment="Stretch" >
-            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="FormatListCheckbox" Height="24" Width="24" VerticalAlignment="Center" /> 
-                <TextBlock
-                    Margin="15 0 0 0" VerticalAlignment="Center" FontWeight="Bold">
-                    TO DO
-                </TextBlock>
-            </StackPanel>
-            
-        </materialDesign:Card>
-        <materialDesign:Card
-            Background="DeepPink"
-            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-            Grid.Column="1"
-            Grid.Row="1" VerticalAlignment="Stretch" >
-            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="ProgressClock" Height="24" Width="24" VerticalAlignment="Center"/>
-                <TextBlock
-                    Margin="15 0 0 0" VerticalAlignment="Center" FontWeight="Bold">
-                    DOING
-                </TextBlock>
-            </StackPanel>
+            Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" 
+            Margin="2.5 0 2.5 2.5"
+            Background="{DynamicResource MaterialDesignDarkSeparatorBackground}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition  MinHeight="30" MaxHeight="50"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <materialDesign:Card
+                    Grid.Row="0"
+                    Background="{DynamicResource PrimaryHueDarkBrush}"
+                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                    VerticalAlignment="Stretch" MinHeight="30" MaxHeight="50" >
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FormatListCheckbox" Height="24" Width="24" VerticalAlignment="Center" />
+                        <TextBlock
+                            Margin="15 0 0 0" VerticalAlignment="Center" FontWeight="Bold">
+                            TO DO
+                        </TextBlock>
+                    </StackPanel>
 
+                </materialDesign:Card>
+            </Grid>
         </materialDesign:Card>
         <materialDesign:Card
-            Background="{DynamicResource SecondaryAccentBrush}"
-            Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
-            Grid.Column="2"
-            Grid.Row="1" VerticalAlignment="Stretch" >
-            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="CheckBold" Height="24" Width="24" VerticalAlignment="Center"/>
-                <TextBlock
-                    Margin="15 0 0 0" VerticalAlignment="Center" FontWeight="Bold">
-                    DONE
-                </TextBlock>
-            </StackPanel>
-
+            Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"
+            Margin="2.5 0 2.5 2.5"
+            Background="{DynamicResource MaterialDesignDarkSeparatorBackground}">
+              <Grid>
+                  <Grid.RowDefinitions>
+                  <RowDefinition MinHeight="30" MaxHeight="40"/>
+                  <RowDefinition />
+                  <RowDefinition />
+                  <RowDefinition />
+                  <RowDefinition />
+                  </Grid.RowDefinitions>
+                <materialDesign:Card
+                    Grid.Row="0"
+                    Background="DeepPink"
+                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                    
+                    VerticalAlignment="Stretch" >
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ProgressClock" Height="24" Width="24" VerticalAlignment="Center"/>
+                        <TextBlock
+                            Margin="15 0 0 0" VerticalAlignment="Center" FontWeight="Bold">
+                            DOING
+                        </TextBlock>
+                    </StackPanel>
+                  </materialDesign:Card>
+            </Grid>        
         </materialDesign:Card>
+        <materialDesign:Card
+            Grid.Column="2" Grid.Row="1" Grid.RowSpan="5"
+            Margin="2.5 0 2.5 2.5"
+            Background="{DynamicResource MaterialDesignDarkSeparatorBackground}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="30" MaxHeight="40"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <materialDesign:Card
+                    Background="{DynamicResource SecondaryAccentBrush}"
+                    Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
+                    VerticalAlignment="Stretch" >
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CheckBold" Height="24" Width="24" VerticalAlignment="Center"/>
+                        <TextBlock
+                            Margin="15 0 0 0" VerticalAlignment="Center" FontWeight="Bold">
+                            DONE
+                        </TextBlock>
+                    </StackPanel>
+
+                </materialDesign:Card>
+            </Grid>
+        </materialDesign:Card>
+
+
 
 
         <materialDesign:Flipper Grid.Column="2" HorizontalAlignment="Right" Grid.RowSpan="6"  
@@ -83,10 +126,10 @@
                 <Button 
                     Grid.Column="2" Grid.Row="0" 
                     
-                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    Style="{StaticResource MaterialDesignFlatButton}"
                     Command="{x:Static materialDesign:Flipper.FlipCommand}"
                     ToolTip="Profile">
-                    <materialDesign:PackIcon Kind="PersonCircle" Height="24" Width="24"/>
+                    <materialDesign:PackIcon Kind="AccountBadgeHorizontalOutline" Height="30" Width="30" Margin="-10"/>
                 </Button>
 
             </materialDesign:Flipper.FrontContent>
