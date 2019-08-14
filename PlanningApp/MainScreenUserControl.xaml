@@ -29,8 +29,11 @@
                         <ProgressBar
                             Margin="0 0 10 0"
                             Style="{StaticResource MaterialDesignCircularProgressBar}"
-                            Value="1"
-                            IsIndeterminate="True" />
+                            x:Name="DeterminateCircularProgress"
+                            Value="99"
+                            IsIndeterminate="True"
+                            Foreground="{Binding PriorityLevel, Converter={StaticResource ColorConverter}}"
+                            />   
                         <TextBlock Text="{Binding Title}" Style="{DynamicResource MaterialDesignTitleTextBlock}"/>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
