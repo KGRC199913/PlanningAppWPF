@@ -29,9 +29,14 @@ namespace PlanningApp
             get => _currentUser;
         }
 
-        public void Login()
+        public bool Login(User user)
         {
-            throw new System.NotImplementedException();
+            if (_bus?.Login(user) == true)
+            {
+                _displayPlans = _bus.GetPlans();
+                return true;
+            }
+            return false;
         }
 
         public void Logout()
@@ -47,6 +52,11 @@ namespace PlanningApp
         public void ShowNotification(int timeout, string title, string message, string typeIcon)
         {
             App.ShowNotification(timeout, title, message, typeIcon);
+        }
+
+        public void SavePlans()
+        {
+            _bus.DataSave();
         }
     }
 }

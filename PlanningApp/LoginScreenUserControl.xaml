@@ -38,12 +38,13 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBox
+                x:Name="IdTextBox"
           materialDesign:HintAssist.Hint="ID"
           materialDesign:HintAssist.IsFloating="True"
           Margin="0 12 0 0">
             </TextBox>
             <PasswordBox
-          Grid.Row="1"
+                Grid.Row="1"
           x:Name="FloatingPasswordBox"
           materialDesign:HintAssist.Hint="Floating Password"
           Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
@@ -59,7 +60,8 @@
                     Style="{StaticResource MaterialDesignRaisedAccentButton}"
                     Margin= "2"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton"
-                    Background="DarkRed">
+                    Background="DarkRed"
+                    Click="LoginButton_OnClick">
                     LOGIN
                 </Button>
             </UniformGrid>

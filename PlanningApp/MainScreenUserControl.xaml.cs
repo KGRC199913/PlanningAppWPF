@@ -20,9 +20,29 @@ namespace PlanningApp
     /// </summary>
     public partial class MainScreenUserControl : UserControl
     {
-        public MainScreenUserControl()
+        private Action _onSignOutSwapper;
+        public MainScreenUserControl(Action swapperAction)
         {
             InitializeComponent();
+            _onSignOutSwapper = swapperAction;
+
+            ToDoListView.Items.Add(new Plan()
+            {
+                Title = "Meow",
+                Detail = "Nya",
+                StartDateTime = DateTime.Today,
+                EndDateTime = DateTime.Today,
+                IsDisable = false,
+                PriorityLevel = PlanPriorityLevel.Emergence,
+                State = PlanState.ToDo
+            });
+        }
+
+        private void SignoutButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var presenter = (this.DataContext as IPresentation);
+            presenter?.SavePlans();
+            _onSignOutSwapper?.Invoke();
         }
     }
 }

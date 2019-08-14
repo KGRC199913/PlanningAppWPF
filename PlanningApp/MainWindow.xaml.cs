@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,6 +39,9 @@ namespace PlanningApp
             //    Username = "nekoshota",
             //    HashedPassword = hasher.ComputeSha256Hash("123456")
             //};
+
+            //dao.CheckUserExist(testUser);
+            //dao.AddNewUser(testUser);
             //var testUser = new User()
             //{
             //    Username = "Supercat",
@@ -45,9 +49,20 @@ namespace PlanningApp
             //};
 
             _presentation = new Presentation(new PlanningBus(new BinaryDao()));
-            MainViewContentControl.Content = new MainScreenUserControl();
-            MainViewContentControl.DataContext = _presentation;
+            var loginScreen = new LoginScreenUserControl(this.SwapToMainScreen) { DataContext = _presentation };
+            MainViewContentControl.Content = loginScreen;
         }
 
+        public void SwapToMainScreen()
+        {
+            var mainScreen = new MainScreenUserControl(this.SwapToLoginScreen) {DataContext = _presentation};
+            MainViewContentControl.Content = mainScreen;
+        }
+
+        public void SwapToLoginScreen()
+        {
+            var loginScreen = new LoginScreenUserControl(this.SwapToMainScreen) {DataContext = _presentation};
+            MainViewContentControl.Content = loginScreen;
+        }
     }
 }

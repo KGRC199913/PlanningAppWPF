@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Presentation.cs" />
     <Compile Include="PlanningBus.cs" />
+    <Compile Include="PriorityToColorConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewModelBase.cs" />

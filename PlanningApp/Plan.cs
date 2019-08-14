@@ -22,6 +22,7 @@ namespace PlanningApp
     [Serializable]
     public class Plan : ViewModelBase
     {
+        private string _title;
         private string _detail;
         private DateTime _startDateTime;
         private DateTime _endDateTime;
@@ -85,6 +86,16 @@ namespace PlanningApp
             set
             {
                 _state = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
                 OnPropertyChanged();
             }
         }

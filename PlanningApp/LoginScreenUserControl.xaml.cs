@@ -20,9 +20,31 @@ namespace PlanningApp
     /// </summary>
     public partial class LoginScreenUserControl : UserControl
     {
-        public LoginScreenUserControl()
+        private Action _loginSuccessAction;
+        public LoginScreenUserControl(Action swapAction)
         {
             InitializeComponent();
+            _loginSuccessAction = swapAction;
+        }
+
+        private void LoginButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var hasher = new Hasher();
+            var userData = new User()
+            {
+                Username = IdTextBox.Text,
+                HashedPassword = hasher.ComputeSha256Hash(FloatingPasswordBox.Password)
+            };
+            var presenter = (this.DataContext as IPresentation);
+            if (presenter.Login(userData))
+            {
+                _loginSuccessAction?.Invoke();
+            }
+            else
+            {
+                MessageBox.Show("Wrong Username/Password");
+            }
+
         }
     }
 }

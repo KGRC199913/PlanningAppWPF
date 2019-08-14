@@ -14,8 +14,29 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" MinHeight="601"    
+             d:DesignHeight="450" d:DesignWidth="800"
              >
+    <UserControl.Resources>
+        <local:PriorityToColorConverter x:Key="ColorConverter"/>
+        <!-- Place Holder-->
+        <DataTemplate x:Key="PlanDataTemplate">
+            <materialDesign:Card
+                Background="{Binding PriorityLevel, Converter={StaticResource ColorConverter}}"
+                BorderThickness="0.1">
+                <DockPanel LastChildFill="False">
+                    <StackPanel DockPanel.Dock="Left">
+                        <Label Content="{Binding Title}"/>
+                        <Label Content="{Binding Detail}"/>
+                        <Label Content="{Binding StartDateTime, StringFormat=dd-MM-yyyy}"/>
+                        <Label Content="{Binding EndDateTime, StringFormat=dd-MM-yyyy}"/>
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:Card>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+
     <Grid IsSharedSizeScope="True" UseLayoutRounding="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,27 +44,23 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.1*" />
             <RowDefinition />
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!--   <Border Background="{DynamicResource MaterialDesignDarkSeparatorBackground}" Grid.RowSpan="6" Opacity="0.4" />
         <Border Background="{DynamicResource MaterialDesignDarkSeparatorBackground}" Grid.Column="2"  Grid.RowSpan="6" Opacity="0.4" /> -->
-        <materialDesign:Card
-            Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" 
+        <Border
+            Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" 
             Margin="10 0 2.5 2.5"
+            materialDesign:ShadowAssist.ShadowDepth="Depth2"
+            CornerRadius="5"
             Background="{DynamicResource MaterialDesignDarkSeparatorBackground}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition  MinHeight="30" MaxHeight="50"/>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition  MinHeight="30" MaxHeight="40"/>
+                    <RowDefinition Height="11*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:Card
                     Grid.Row="0"
@@ -57,21 +74,24 @@
                             TO DO
                         </TextBlock>
                     </StackPanel>
-
                 </materialDesign:Card>
+                <ListView x:Name="ToDoListView"
+                          Grid.Row="1"
+                          ItemTemplate="{StaticResource PlanDataTemplate}"/>
             </Grid>
-        </materialDesign:Card>
-        <materialDesign:Card
-            Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"
+        </Border>
+
+        <Border
+            Grid.Column="1" Grid.Row="1"
+            Grid.RowSpan="2"
             Margin="2.5 0 2.5 2.5"
+            materialDesign:ShadowAssist.ShadowDepth="Depth2"
+            CornerRadius="5"
             Background="{DynamicResource MaterialDesignDarkSeparatorBackground}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition MinHeight="30" MaxHeight="40"/>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="11*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:Card
                     Grid.Row="0"
@@ -87,19 +107,21 @@
                         </TextBlock>
                     </StackPanel>
                 </materialDesign:Card>
+                <ListView x:Name="DoingListView"
+                          Grid.Row="1"/>
             </Grid>
-        </materialDesign:Card>
-        <materialDesign:Card
-            Grid.Column="2" Grid.Row="1" Grid.RowSpan="5"
+        </Border>
+        <Border
+            Grid.Column="2" Grid.Row="1"
+            Grid.RowSpan="2"
             Margin="2.5 0 10 2.5"
+            materialDesign:ShadowAssist.ShadowDepth="Depth2"
+            CornerRadius="5"
             Background="{DynamicResource MaterialDesignDarkSeparatorBackground}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition MinHeight="30" MaxHeight="40"/>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="11*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:Card
                     Background="{DynamicResource SecondaryAccentBrush}"
@@ -112,10 +134,11 @@
                             DONE
                         </TextBlock>
                     </StackPanel>
-
                 </materialDesign:Card>
+                <ListView x:Name="DoneListView"
+                          Grid.Row="1"/>
             </Grid>
-        </materialDesign:Card>
+        </Border>
 
 
         <materialDesign:Card 
@@ -128,7 +151,7 @@
                 Value="75" />
         </materialDesign:Card>
 
-        <materialDesign:Flipper Grid.Column="2" HorizontalAlignment="Right" Grid.RowSpan="6" Margin="0 0 10 0"  
+        <materialDesign:Flipper Grid.Column="2" HorizontalAlignment="Right" Grid.Row="0" Grid.RowSpan="3" Margin="0 0 10 0"  
                                 Style="{StaticResource MaterialDesignCardFlipper}">
             <materialDesign:Flipper.FrontContent >
                 <Button 
@@ -181,9 +204,11 @@
                             Binding Here
                         </TextBlock>
                         <Button
+                            x:Name="SignoutButton"
                             Grid.Row="2"
                             Margin="0 12 0 0"
-                            Content="SIGN OUT">
+                            Content="SIGN OUT"
+                            Click="SignoutButton_OnClick">
                         </Button>
                     </StackPanel>
                 </Grid>
