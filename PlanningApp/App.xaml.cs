@@ -70,8 +70,22 @@ namespace PlanningApp
         {
             if (!_isExit)
             {
-                e.Cancel = true;
-                MainWindow.Hide(); // A hidden window can be shown again, a closed one not
+                MessageBoxResult result = System.Windows.MessageBox.Show("Hide to system tray icon?", "Notice", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                switch (result)
+                {
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                    case MessageBoxResult.Yes:
+                        e.Cancel = true;
+                        MainWindow.Hide();
+                        break;
+                    case MessageBoxResult.No:
+                        _notifyIcon.Dispose();
+                        _notifyIcon = null;
+                        break;
+                }
+                
             }
         }
 
@@ -80,16 +94,16 @@ namespace PlanningApp
             switch (typeIcon)
             {
                 case "None":
-                    _notifyIcon.ShowBalloonTip(timeout, title, message, ToolTipIcon.None);
+                    _notifyIcon?.ShowBalloonTip(timeout, title, message, ToolTipIcon.None);
                     break;
                 case "Info":
-                    _notifyIcon.ShowBalloonTip(timeout, title, message, ToolTipIcon.Info);
+                    _notifyIcon?.ShowBalloonTip(timeout, title, message, ToolTipIcon.Info);
                     break;
                 case "Error":
-                    _notifyIcon.ShowBalloonTip(timeout, title, message, ToolTipIcon.Error);
+                    _notifyIcon?.ShowBalloonTip(timeout, title, message, ToolTipIcon.Error);
                     break;
                 case "Warning":
-                    _notifyIcon.ShowBalloonTip(timeout, title, message, ToolTipIcon.Warning);
+                    _notifyIcon?.ShowBalloonTip(timeout, title, message, ToolTipIcon.Warning);
                     break;
             }
         }
