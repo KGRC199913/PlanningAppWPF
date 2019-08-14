@@ -21,15 +21,25 @@
         <!-- Place Holder-->
         <DataTemplate x:Key="PlanDataTemplate">
             <materialDesign:Card
-                Background="{Binding PriorityLevel, Converter={StaticResource ColorConverter}}"
+                HorizontalAlignment="Stretch" 
+                Background="{DynamicResource MaterialDesignBackground}"
                 BorderThickness="0.1">
-                <DockPanel LastChildFill="False">
-                    <StackPanel DockPanel.Dock="Left">
-                        <Label Content="{Binding Title}"/>
-                        <Label Content="{Binding Detail}"/>
-                        <Label Content="{Binding StartDateTime, StringFormat=dd-MM-yyyy}"/>
-                        <Label Content="{Binding EndDateTime, StringFormat=dd-MM-yyyy}"/>
+                <DockPanel LastChildFill="False" Margin="10 0 10 0" >
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <ProgressBar
+                            Margin="0 0 10 0"
+                            Style="{StaticResource MaterialDesignCircularProgressBar}"
+                            Value="1"
+                            IsIndeterminate="True" />
+                        <TextBlock Text="{Binding Title}" Style="{DynamicResource MaterialDesignTitleTextBlock}"/>
                     </StackPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <materialDesign:PackIcon  Kind="Calendar" Opacity="1"/>
+                        <TextBlock Text="{Binding EndDateTime, StringFormat=dd/MM/yyyy}" Opacity="0.5" FontStyle="Italic"/>
+                    </StackPanel>
+                    
+                    
+
                 </DockPanel>
             </materialDesign:Card>
         </DataTemplate>
@@ -77,7 +87,16 @@
                 </materialDesign:Card>
                 <ListView x:Name="ToDoListView"
                           Grid.Row="1"
-                          ItemTemplate="{StaticResource PlanDataTemplate}"/>
+                          ItemTemplate="{StaticResource PlanDataTemplate}"
+                          Margin="10"
+                          Padding="0"
+                >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </Grid>
         </Border>
 

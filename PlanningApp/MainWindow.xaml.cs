@@ -63,6 +63,7 @@ namespace PlanningApp
             this.Height = lastHeight;
             this.MinHeight = 317.0;
             this.MinWidth = 607.0;
+            this.WindowStyle = WindowStyle.ThreeDBorderWindow;
             var mainScreen = new MainScreenUserControl(this.SwapToLoginScreen) {DataContext = _presentation};
             MainViewContentControl.Content = mainScreen;
         }
@@ -74,6 +75,9 @@ namespace PlanningApp
             lastHeight = this.Height;
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.ResizeMode = ResizeMode.CanMinimize;
+            this.WindowStyle = WindowStyle.None;
+            //Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
+            //Application.Current.Shutdown();
             MainViewContentControl.Content = loginScreen;
         }
     }
