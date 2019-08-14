@@ -28,6 +28,9 @@ namespace PlanningApp
         
         private readonly Hasher hasher = new Hasher();
 
+        private double lastWidth;
+        private double lastHeight;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +39,7 @@ namespace PlanningApp
 
             //User testUser = new User()
             //{
-            //    Username = "nekoshota",
+            //    Username = "nekoshota1",
             //    HashedPassword = hasher.ComputeSha256Hash("123456")
             //};
 
@@ -49,12 +52,17 @@ namespace PlanningApp
             //};
 
             _presentation = new Presentation(new PlanningBus(new BinaryDao()));
-            var loginScreen = new LoginScreenUserControl(this.SwapToMainScreen) { DataContext = _presentation };
-            MainViewContentControl.Content = loginScreen;
+            SwapToLoginScreen();
         }
 
         public void SwapToMainScreen()
         {
+            this.SizeToContent = SizeToContent.Manual;
+            this.ResizeMode = ResizeMode.CanResize;
+            this.Width = lastWidth;
+            this.Height = lastHeight;
+            this.MinHeight = 317.0;
+            this.MinWidth = 607.0;
             var mainScreen = new MainScreenUserControl(this.SwapToLoginScreen) {DataContext = _presentation};
             MainViewContentControl.Content = mainScreen;
         }
@@ -62,6 +70,10 @@ namespace PlanningApp
         public void SwapToLoginScreen()
         {
             var loginScreen = new LoginScreenUserControl(this.SwapToMainScreen) {DataContext = _presentation};
+            lastWidth = this.Width;
+            lastHeight = this.Height;
+            this.SizeToContent = SizeToContent.WidthAndHeight;
+            this.ResizeMode = ResizeMode.CanMinimize;
             MainViewContentControl.Content = loginScreen;
         }
     }
