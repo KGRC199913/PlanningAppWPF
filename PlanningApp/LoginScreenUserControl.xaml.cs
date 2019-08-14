@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PlanningApp
 {
     /// <summary>
-    /// Interaction logic for mainUserControl.xaml
+    /// Interaction logic for LoginScreenUserControl.xaml
     /// </summary>
-    public partial class mainUserControl : UserControl
+    public partial class LoginScreenUserControl : UserControl
     {
-        public mainUserControl()
+        public LoginScreenUserControl()
         {
             InitializeComponent();
         }
