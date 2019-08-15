@@ -23,8 +23,19 @@ namespace PlanningApp
         public AddTaskDialog()
         {
             InitializeComponent();
+            PriorityComboBox.ItemsSource = Enum.GetValues(typeof(PlanPriorityLevel));
             _plan = new Plan();
+            _plan.EndDateTime = DateTime.Today;
             this.DataContext = _plan;
+        }
+
+        public AddTaskDialog(Plan plan)
+        {
+            InitializeComponent();
+            PriorityComboBox.ItemsSource = Enum.GetValues(typeof(PlanPriorityLevel));
+            _plan = plan;
+            this.DataContext = _plan;
+            CreateButton.Content = "Edit";
         }
 
         private void ExitButton_OnClick(object sender, RoutedEventArgs e)
@@ -40,6 +51,11 @@ namespace PlanningApp
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (TitleTextBox.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Title cannot be empty");
+                return;
+            }
             this.DialogResult = true;
         }
 

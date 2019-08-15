@@ -17,7 +17,7 @@ namespace PlanningApp
                 case PlanPriorityLevel.Normal:
                     return Brushes.LightBlue;
                 case PlanPriorityLevel.High:
-                    return Brushes.LightYellow;
+                    return Brushes.Yellow;
                 case PlanPriorityLevel.Important:
                     return Brushes.Green;
                 case PlanPriorityLevel.Emergence:

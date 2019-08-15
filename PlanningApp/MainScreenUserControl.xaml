@@ -19,17 +19,40 @@
     <UserControl.Resources>
         <local:PriorityToColorConverter x:Key="ColorConverter"/>
         <local:StateToVisibilityConverter x:Key="VisibilityConverter"/>
+        <local:StateArrowVisibilityConverter x:Key="ArrowVisibilityConverter"/>
         <!-- Place Holder-->
+        <ContextMenu x:Key="PlansContextMenu">
+            <MenuItem x:Name="RemovePlanMenuItem" Click="RemoveMenuItem_OnClick">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Delete" Foreground="Red" Margin="0, 0, 10, 0"/>
+                        <TextBlock>
+                            Remove
+                        </TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem x:Name="EditPlanMenuItem" Click="EditMenuItem_OnClick">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Settings" Foreground="Gray" Margin="0, 0, 10, 0"/>
+                        <TextBlock>
+                            Edit
+                        </TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+        </ContextMenu>
         <DataTemplate x:Key="PlanDataTemplate">
             <materialDesign:Card
                 Padding="5 5 0 0"
                 HorizontalAlignment="Stretch" 
                 Background="{DynamicResource MaterialDesignBackground}"
-                BorderThickness="0.1">
+                BorderThickness="0.1"
+                ToolTip="{Binding Detail}">
                 <DockPanel LastChildFill="False" Margin="10 0 10 0" >
                     <DockPanel DockPanel.Dock="Top" LastChildFill="False" >
                         <TextBlock DockPanel.Dock="Left" Text ="{Binding Title}" Style="{DynamicResource MaterialDesignTitleTextBlock}" />
-
                         <ProgressBar
                             DockPanel.Dock="Right"
                             Style="{StaticResource MaterialDesignCircularProgressBar}"
@@ -41,19 +64,25 @@
                     </DockPanel>
                     <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="0 15 0 5 ">
 
-                        <Button DockPanel.Dock="Left"
+                        <Button x:Name="ToLeftColumnButton"
+                                DockPanel.Dock="Left"
                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
                                 HorizontalAlignment="Left"
-                                VerticalContentAlignment="Center">
+                                VerticalContentAlignment="Center"
+                                Visibility="{Binding State, Converter={StaticResource ArrowVisibilityConverter}, ConverterParameter=0}"
+                                Click="ToLeftColumnButton_OnClick">
                             <materialDesign:PackIcon
                                     Kind="ArrowLeft"
                                     HorizontalAlignment="Left"
                                     />
                         </Button>
-                        <Button DockPanel.Dock="Left"
+                        <Button x:Name="ToRightColumnButton"
+                                DockPanel.Dock="Left"
                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
                                 HorizontalAlignment="Left"
-                                VerticalContentAlignment="Center">
+                                VerticalContentAlignment="Center"
+                                Visibility="{Binding State, Converter={StaticResource ArrowVisibilityConverter}, ConverterParameter=1}"
+                                Click="ToRightColumnButton_OnClick">
                             <materialDesign:PackIcon
                                 Kind="ArrowRight"
                                 HorizontalAlignment="Left"
@@ -68,13 +97,10 @@
                         <materialDesign:PackIcon DockPanel.Dock="Right"
                                                  VerticalAlignment="Center"
                                                  Kind="Calendar" Opacity="1"/>
-
-
                     </DockPanel>
                 </DockPanel>
             </materialDesign:Card>
         </DataTemplate>
-
     </UserControl.Resources>    
 
 
@@ -123,7 +149,9 @@
                           Margin="1 5 1 2"
                           ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=ToDo}"
                           Loaded="ToDoListView_OnLoaded"
-                          Padding="0">
+                          Padding="0"
+                          ContextMenu="{StaticResource PlansContextMenu}"
+                          >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -166,7 +194,8 @@
                           ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=Doing}"
                           Loaded="DoingListView_OnLoaded"
                           Margin="1 5 1 2"
-                          Padding="0">
+                          Padding="0"
+                          ContextMenu="{StaticResource PlansContextMenu}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -207,7 +236,8 @@
                           ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=Done}"
                           Loaded="DoneListView_OnLoaded"
                           Margin="1 5 1 2"
-                          Padding="0">
+                          Padding="0"
+                          ContextMenu="{StaticResource PlansContextMenu}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

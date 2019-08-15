@@ -70,26 +70,12 @@
                 Grid.Row="1"
                 >
                 <ComboBox
+                    x:Name="PriorityComboBox"
                     DockPanel.Dock="Left"
                     HorizontalAlignment="Left"
                     materialDesign:HintAssist.Hint="Priority"
                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                    SelectedValue="{Binding Priority, Converter={StaticResource StringPriorityConverter}, Mode=TwoWay}">
-                    <ComboBoxItem>
-                        1
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        2
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        3
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        4
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        5
-                    </ComboBoxItem>
+                    SelectedValue="{Binding PriorityLevel, Mode=TwoWay}">
                 </ComboBox>
                 <DatePicker
                     DockPanel.Dock="Right"
@@ -123,7 +109,7 @@
                 Margin="0,12,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch" Width="172">
-                <Button x:Name="LoginButton"
+                <Button x:Name="CreateButton"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Margin= "2"
                     ToolTip="Login to your account."

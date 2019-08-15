@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>68828206_1670235746442206_375077728728121344_n_Sby_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentWPF, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentWPF.0.7.0\lib\net45\FluentWPF.dll</HintPath>
@@ -73,6 +76,7 @@
       <DependentUpon>AddTaskDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="BinaryDao.cs" />
+    <Compile Include="ExtensiveMethod.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="IPresentation.cs" />
     <Compile Include="IReturnValue.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="PlanningBus.cs" />
     <Compile Include="PriorityToColorConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="StateArrowVisibilityConverter.cs" />
     <Compile Include="StateToVisibilityConverter.cs" />
     <Compile Include="StringPriorityConverter.cs" />
     <Compile Include="User.cs" />
@@ -144,6 +149,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="68828206_1670235746442206_375077728728121344_n_Sby_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

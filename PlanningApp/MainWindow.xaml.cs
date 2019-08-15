@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -34,23 +35,6 @@ namespace PlanningApp
         public MainWindow()
         {
             InitializeComponent();
-            //_presentation = new Presentation(new PlanningBus(new BinaryDao()));
-            //IDao dao = new BinaryDao();
-
-            //User testUser = new User()
-            //{
-            //    Username = "nekoshota1",
-            //    HashedPassword = hasher.ComputeSha256Hash("123456")
-            //};
-
-            //dao.CheckUserExist(testUser);
-            //dao.AddNewUser(testUser);
-            //var testUser = new User()
-            //{
-            //    Username = "Supercat",
-            //    HashedPassword = hasher.ComputeSha256Hash("abcdef")
-            //};
-
             _presentation = new Presentation(new PlanningBus(new BinaryDao()));
             SwapToLoginScreen();
         }

@@ -72,5 +72,70 @@ namespace PlanningApp
                 (this.DataContext as IPresentation)?.ShowAllPlans();
             }
         }
+
+        private void ToRightColumnButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var plan = (sender as Button)?.DataContext as Plan;
+            if (plan.State == PlanState.ToDo)
+            {
+                plan.State = PlanState.Doing;
+            }
+            else
+            if (plan.State == PlanState.Doing)
+            {
+                plan.State = PlanState.Done;
+            }
+
+            if (SearchTextBox.Text.Equals(string.Empty))
+                (this.DataContext as IPresentation)?.ShowAllPlans();
+            else 
+                (this.DataContext as IPresentation)?.FilterPlansByContent(SearchTextBox.Text);
+        }
+
+        private void ToLeftColumnButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var plan = (sender as Button)?.DataContext as Plan;
+            if (plan.State == PlanState.Doing)
+            {
+                plan.State = PlanState.ToDo;
+            }
+            else
+            if (plan.State == PlanState.Done)
+            {
+                plan.State = PlanState.Doing;
+            }
+
+            if (SearchTextBox.Text.Equals(string.Empty))
+                (this.DataContext as IPresentation)?.ShowAllPlans();
+            else 
+                (this.DataContext as IPresentation)?.FilterPlansByContent(SearchTextBox.Text);
+        }
+
+        private void RemoveMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var menuItem = (MenuItem)e.Source;
+            var contextMenu = (ContextMenu)menuItem.Parent;
+            var items = (ListView)contextMenu.PlacementTarget;
+            var toRemovePlan = items.SelectedItem as Plan;
+            if (toRemovePlan == null)
+                return;
+            (this.DataContext as IPresentation)?.RemovePlan(toRemovePlan);
+        }
+
+        private void EditMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var menuItem = (MenuItem)e.Source;
+            var contextMenu = (ContextMenu)menuItem.Parent;
+            var items = (ListView)contextMenu.PlacementTarget;
+            var toEditPlan = items.SelectedItem as Plan;
+            if (toEditPlan == null)
+                return;
+            var backupPlan = toEditPlan.DeepClone();
+            var AddDialog = new AddTaskDialog(toEditPlan);
+            if (AddDialog.ShowDialog() != true)
+            {
+                toEditPlan = backupPlan.DeepClone();
+            }
+        }
     }
 }
