@@ -204,10 +204,13 @@
             Padding="3">
             <DockPanel LastChildFill="False">
                 <Button
+                    x:Name="AddButton"
                     Margin="5 1 5 1"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}"
                     Width="63"
-                    ToolTip="Add a new task.">
+                    ToolTip="Add a new task."
+                    Click="AddButton_OnClick"
+                    >
                     <materialDesign:PackIcon Kind="Add" Width="25" Height="25"/>
                 </Button>
                 <materialDesign:ColorZone  DockPanel.Dock="Left"
@@ -226,27 +229,33 @@
                             </Grid.ColumnDefinitions>
                             
                                 <Button
+                                    x:Name="SearchButton"
                                 VerticalContentAlignment="Top" Padding="7 6 7 7"
-                                Style="{DynamicResource MaterialDesignToolButton}">
+                                IsHitTestVisible="False"
+                                Style="{DynamicResource MaterialDesignToolButton}"
+                                >
                                 <materialDesign:PackIcon
                                     Kind="Magnify"
                                     Opacity=".56"  />
                             </Button>
                             <TextBox
+                                x:Name="SearchTextBox"
                                 Grid.Column="1" 
                                 Margin="8 0 0 2"
                                 materialDesign:HintAssist.Hint="Search"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 BorderThickness="0"
                                 MinWidth="200"
-                                VerticalAlignment="Center" />
+                                VerticalAlignment="Center" 
+                                TextChanged="SearchTextBox_OnTextChanged"/>
                             
                         </Grid>
                     </materialDesign:ColorZone>
                     <Button DockPanel.Dock="Left"
         Style="{DynamicResource MaterialDesignToolForegroundButton}"
         Margin="8 0 0 0"
-        Panel.ZIndex="0">
+        Panel.ZIndex="0"
+        Click="SearchButton_OnClick">
                         <materialDesign:PackIcon
           Kind="Send" />
                     </Button>

@@ -17,16 +17,35 @@ namespace PlanningApp
     /// <summary>
     /// Interaction logic for AddTaskDialog.xaml
     /// </summary>
-    public partial class AddTaskDialog : Window
+    public partial class AddTaskDialog : Window, IReturnValue
     {
+        private Plan _plan;
         public AddTaskDialog()
         {
             InitializeComponent();
+            _plan = new Plan();
+            this.DataContext = _plan;
         }
 
         private void ExitButton_OnClick(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = false;
             this.Close();
+        }
+
+        public object Value
+        {
+            get => _plan;
+        }
+
+        private void LoginButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
+        private void AddTaskDialog_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }
