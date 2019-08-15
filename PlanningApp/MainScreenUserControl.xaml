@@ -160,8 +160,7 @@
                 <materialDesign:Card
                     Background="{DynamicResource SecondaryAccentBrush}"
                     Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
-                    VerticalAlignment="Stretch" 
-                    >
+                    VerticalAlignment="Stretch" >
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="CheckBold" Height="24" Width="24" VerticalAlignment="Center"/>
                         <TextBlock
