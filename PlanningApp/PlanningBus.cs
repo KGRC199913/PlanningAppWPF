@@ -36,13 +36,20 @@ namespace PlanningApp
                         var keyword = (string)filterArg;
                         foreach (var it in _plans)
                         {
-                            if (it.Detail.Contains(keyword))
+                            if (it.Detail?.Contains(keyword) == true)
                             {
                                 filteredPlans.Add(it);
                             }
+                            else
+                            {
+                                if (it.Title?.Contains(keyword) == true)
+                                {
+                                    filteredPlans.Add(it);
+                                }
+                            }
                         }
+                        return filteredPlans;
                 }
-                    break;
                 case PlanFilterMode.Date:
                 {
                     var targetDate = (DateTime) filterArg;
@@ -53,8 +60,8 @@ namespace PlanningApp
                             filteredPlans.Add(it);
                         }
                     }
+                    return filteredPlans;
                 }
-                    break;
                 case PlanFilterMode.Priority:
                 {
                     var priority = (PlanPriorityLevel) filterArg;
@@ -65,13 +72,13 @@ namespace PlanningApp
                             filteredPlans.Add(it);
                         }
                     }
+                    return filteredPlans;
                 }
-                    break;
                 default:
                     break;
             }
 
-            return filteredPlans;
+            return GetPlans();
         }
 
         public BindingList<Plan> GetPlans()
@@ -84,9 +91,9 @@ namespace PlanningApp
             _plans?.Add(plan);
         }
 
-        public void RemovePlan(int index)
+        public void RemovePlan(Plan sample)
         {
-            _plans?.RemoveAt(index);
+            _plans.Remove(sample);
         }
 
         public void SettingSave()

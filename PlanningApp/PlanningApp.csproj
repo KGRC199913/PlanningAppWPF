@@ -75,6 +75,7 @@
     <Compile Include="BinaryDao.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="IPresentation.cs" />
+    <Compile Include="IReturnValue.cs" />
     <Compile Include="LoginScreenUserControl.xaml.cs">
       <DependentUpon>LoginScreenUserControl.xaml</DependentUpon>
     </Compile>
@@ -86,6 +87,7 @@
     <Compile Include="PriorityToColorConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="StateToVisibilityConverter.cs" />
+    <Compile Include="StringPriorityConverter.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Page Include="AddTaskDialog.xaml">

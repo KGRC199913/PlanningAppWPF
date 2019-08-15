@@ -14,7 +14,7 @@ namespace PlanningApp
         BindingList<Plan> GetFilteredPlans(PlanFilterMode mode, object filterArg);
         BindingList<Plan> GetPlans();
         void AddNewPlan(Plan plan);
-        void RemovePlan(int index);
+        void RemovePlan(Plan sample);
         void SettingSave(); // TEMP
         void DataSave(); // TEMP
         bool Login(User loginUser);

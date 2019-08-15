@@ -7,8 +7,14 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="AddTaskDialog_OnMouseLeftButtonDown"
         Title="AddTaskDialog" Height="400" Width="300">
 
+    <Window.Resources>
+        <local:StringPriorityConverter x:Key="StringPriorityConverter"/>
+    </Window.Resources>
     <Grid Background="AliceBlue"
       Height="400"
       Width="300">
@@ -57,7 +63,8 @@
                 x:Name="TitleTextBox"
                 materialDesign:HintAssist.Hint="Title"
                 materialDesign:HintAssist.IsFloating="True"
-                Margin="0 12 0 0">
+                Margin="0 12 0 0"
+                Text="{Binding Title, Mode=TwoWay}">
             </TextBox>
             <DockPanel LastChildFill="False"
                 Grid.Row="1"
@@ -66,7 +73,8 @@
                     DockPanel.Dock="Left"
                     HorizontalAlignment="Left"
                     materialDesign:HintAssist.Hint="Priority"
-                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                    SelectedValue="{Binding Priority, Converter={StaticResource StringPriorityConverter}, Mode=TwoWay}">
                     <ComboBoxItem>
                         1
                     </ComboBoxItem>
@@ -88,18 +96,17 @@
                     HorizontalAlignment="Right"
                     Width="100"
                     materialDesign:HintAssist.Hint="Pick Date" 
-                    
+                    SelectedDate="{Binding EndDateTime, Mode=TwoWay}"
+                    DisplayDate="{Binding EndDateTime, Mode=TwoWay}"
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
             </DockPanel>
             <StackPanel
                 Grid.Row="3"
                 Margin="0 20 0 10">
-                <CheckBox
-                    x:Name="MaterialDesignFilledTextFieldTextBoxEnabledComboBox"
-                    IsChecked="True"
-                    Margin="0,0,0,8">
-                    Detail
-                </CheckBox>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Edit" Margin="0, 0, 10, 0" Foreground="BlueViolet"/>
+                    <TextBlock> Detail: </TextBlock>
+                </StackPanel>
                 <TextBox
                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                     VerticalAlignment="Top"
@@ -107,7 +114,8 @@
                     TextWrapping="Wrap"
                     MaxWidth="400"
                     materialDesign:HintAssist.Hint="Describe your task more detail."
-                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" Height="151" />
+                    Height="151"
+                    Text="{Binding Detail, Mode=TwoWay}"/>
             </StackPanel>
 
             <UniformGrid Columns="1"
@@ -120,6 +128,7 @@
                     Margin= "2"
                     ToolTip="Login to your account."
                     Background="DarkRed" IsDefault="True"
+                    Click="LoginButton_OnClick"
                     >
                     CREATE
                 </Button>

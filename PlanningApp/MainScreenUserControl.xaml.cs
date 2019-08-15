@@ -48,5 +48,29 @@ namespace PlanningApp
         {
             DoneListView.DataContext = this.DataContext;
         }
+
+        private void SearchButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (SearchTextBox.Text.Equals(string.Empty)) return;
+            (this.DataContext as IPresentation)?.FilterPlansByContent(SearchTextBox.Text);
+        }
+
+        private void AddButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var AddDialog = new AddTaskDialog();
+            if (AddDialog.ShowDialog() != true) return;
+            var planReturned = AddDialog.Value as Plan;
+            if (planReturned == null) return;
+            planReturned.State = PlanState.ToDo;
+            (this.DataContext as IPresentation)?.AddPlan(planReturned);
+        }
+
+        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SearchTextBox.Text.Equals(string.Empty))
+            {
+                (this.DataContext as IPresentation)?.ShowAllPlans();
+            }
+        }
     }
 }

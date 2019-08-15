@@ -37,6 +37,22 @@ namespace PlanningApp
             DisplayPlans = _bus.GetPlans();
         }
 
+        public void RemovePlan(Plan plan)
+        {
+            _bus?.RemovePlan(plan);
+            DisplayPlans = _bus.GetPlans();
+        }
+
+        public void ShowAllPlans()
+        {
+            DisplayPlans = _bus.GetPlans();
+        }
+
+        public void FilterPlansByContent(string content)
+        {
+            DisplayPlans = _bus.GetFilteredPlans(PlanFilterMode.Content, content);
+        }
+
         public bool Login(User user)
         {
             if (_bus?.Login(user) != true) return false;

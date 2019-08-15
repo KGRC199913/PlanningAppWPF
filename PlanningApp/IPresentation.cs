@@ -8,6 +8,9 @@ namespace PlanningApp
         BindingList<Plan> DisplayPlans { get; set; }
         User CurrentUser { get; }
         void AddPlan(Plan plan);
+        void RemovePlan(Plan plan);
+        void ShowAllPlans();
+        void FilterPlansByContent(string content);
         bool Login(User user);
         void Logout();
         bool Signup(User signupUser);
