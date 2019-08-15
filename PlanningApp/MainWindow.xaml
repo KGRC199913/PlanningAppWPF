@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:PlanningApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" >
     <ContentControl x:Name="MainViewContentControl"/>
 </Window>
