@@ -57,11 +57,23 @@ namespace PlanningApp
         {
             foreach (var curUser in _users)
             {
+                if (user.Username.Equals(curUser.Username))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool CheckUserValid(User user)
+        {
+            foreach (var curUser in _users)
+            {
                 if (user.Username.Equals(curUser.Username) && user.HashedPassword.Equals(curUser.HashedPassword))
                     return true;
             }
 
             return false;
+
         }
 
         public bool AddNewUser(User signupUser)

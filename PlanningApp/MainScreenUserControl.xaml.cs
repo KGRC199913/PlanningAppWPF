@@ -25,17 +25,6 @@ namespace PlanningApp
         {
             InitializeComponent();
             _onSignOutSwapper = swapperAction;
-
-            ToDoListView.Items.Add(new Plan()
-            {
-                Title = "Meow",
-                Detail = "Nya",
-                StartDateTime = DateTime.Today,
-                EndDateTime = DateTime.Today,
-                IsDisable = false,
-                PriorityLevel = PlanPriorityLevel.Emergence,
-                State = PlanState.ToDo
-            });
         }
 
         private void SignoutButton_OnClick(object sender, RoutedEventArgs e)
@@ -43,6 +32,21 @@ namespace PlanningApp
             var presenter = (this.DataContext as IPresentation);
             presenter?.SavePlans();
             _onSignOutSwapper?.Invoke();
+        }
+
+        private void ToDoListView_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ToDoListView.DataContext = this.DataContext;
+        }
+
+        private void DoingListView_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            DoingListView.DataContext = this.DataContext;
+        }
+
+        private void DoneListView_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            DoneListView.DataContext = this.DataContext;
         }
     }
 }

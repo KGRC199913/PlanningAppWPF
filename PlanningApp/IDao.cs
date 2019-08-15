@@ -5,6 +5,7 @@ namespace PlanningApp
     public interface IDao
     {
         bool CheckUserExist(User user);
+        bool CheckUserValid(User user);
         bool AddNewUser(User signupUser);
         bool UpdateUsersListInFile();
         BindingList<Plan> LoadPlans(User user);

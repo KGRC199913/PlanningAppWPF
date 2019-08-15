@@ -30,6 +30,18 @@ namespace PlanningApp
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (IdTextBox.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("ID cannot be empty");
+                return;
+            }
+
+            if (FloatingPasswordBox.Password.Equals(string.Empty))
+            {
+                MessageBox.Show("Password cannot be empty");
+                return;
+            }
+
             var hasher = new Hasher();
             var userData = new User()
             {
@@ -37,7 +49,7 @@ namespace PlanningApp
                 HashedPassword = hasher.ComputeSha256Hash(FloatingPasswordBox.Password)
             };
             var presenter = (this.DataContext as IPresentation);
-            if (presenter.Login(userData))
+            if (presenter?.Login(userData) == true)
             {
                 _loginSuccessAction?.Invoke();
             }

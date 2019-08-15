@@ -73,6 +73,8 @@ namespace PlanningApp
             var loginScreen = new LoginScreenUserControl(this.SwapToMainScreen) {DataContext = _presentation};
             lastWidth = this.Width;
             lastHeight = this.Height;
+            this.MinHeight = 0.0;
+            this.MinWidth = 0.0;
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.ResizeMode = ResizeMode.CanMinimize;
             this.WindowStyle = WindowStyle.None;
