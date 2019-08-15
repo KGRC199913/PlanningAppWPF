@@ -100,29 +100,12 @@ namespace PlanningApp
             }
         }
 
-        public override bool Equals(object obj)
+        public bool Equals(object rhs)
         {
-            return base.Equals(obj);
-        }
-
-        protected bool Equals(Plan other)
-        {
+            if (!(rhs is Plan))
+                return false;
+            var other = (Plan) rhs;
             return string.Equals(_title, other._title) && string.Equals(_detail, other._detail) && _startDateTime.Equals(other._startDateTime) && _endDateTime.Equals(other._endDateTime) && _priorityLevel == other._priorityLevel && _state == other._state && _isDisable == other._isDisable;
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hashCode = (_title != null ? _title.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (_detail != null ? _detail.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ _startDateTime.GetHashCode();
-                hashCode = (hashCode * 397) ^ _endDateTime.GetHashCode();
-                hashCode = (hashCode * 397) ^ (int) _priorityLevel;
-                hashCode = (hashCode * 397) ^ (int) _state;
-                hashCode = (hashCode * 397) ^ _isDisable.GetHashCode();
-                return hashCode;
-            }
         }
     }
 }
