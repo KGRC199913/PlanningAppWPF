@@ -69,6 +69,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddTaskDialog.xaml.cs">
+      <DependentUpon>AddTaskDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BinaryDao.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="IPresentation.cs" />
@@ -85,6 +88,10 @@
     <Compile Include="StateToVisibilityConverter.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewModelBase.cs" />
+    <Page Include="AddTaskDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginScreenUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
