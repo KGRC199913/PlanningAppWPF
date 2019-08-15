@@ -18,6 +18,7 @@ namespace PlanningApp
         public BindingList<Plan> DisplayPlans
         {
             get => _displayPlans;
+
             set
             {
                 _displayPlans = value;
