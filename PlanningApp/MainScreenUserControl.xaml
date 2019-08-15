@@ -39,15 +39,43 @@
                             Foreground="{Binding PriorityLevel, Converter={StaticResource ColorConverter}}"
                             />   
                     </DockPanel>
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0 15 0 5 ">
-                        <materialDesign:PackIcon  Kind="Calendar" Opacity="1"/>
-                        <TextBlock Text="{Binding EndDateTime, StringFormat=dd/MM/yyyy}"   FontStyle="Italic"  Opacity="0.7"/>
-                    </StackPanel>
+                    <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="0 15 0 5 ">
+
+                        <Button DockPanel.Dock="Left"
+                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center">
+                            <materialDesign:PackIcon
+                                    Kind="ArrowLeft"
+                                    HorizontalAlignment="Left"
+                                    />
+                        </Button>
+                        <Button DockPanel.Dock="Left"
+                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center">
+                            <materialDesign:PackIcon
+                                Kind="ArrowRight"
+                                HorizontalAlignment="Left"
+                            />
+                        </Button>
+
+                        <TextBlock 
+                             DockPanel.Dock="Right" 
+                             VerticalAlignment="Center"
+                             Text="{Binding EndDateTime, StringFormat=dd/MM/yyyy}"   
+                             FontStyle="Italic"  Opacity="0.7"/>
+                        <materialDesign:PackIcon DockPanel.Dock="Right"
+                                                 VerticalAlignment="Center"
+                                                 Kind="Calendar" Opacity="1"/>
+
+
+                    </DockPanel>
                 </DockPanel>
             </materialDesign:Card>
         </DataTemplate>
 
-    </UserControl.Resources>
+    </UserControl.Resources>    
 
 
     <Grid IsSharedSizeScope="True" UseLayoutRounding="False">
@@ -137,11 +165,13 @@
                           ItemTemplate="{StaticResource PlanDataTemplate}"
                           ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=Doing}"
                           Loaded="DoingListView_OnLoaded"
-                          Margin="10"
+                          Margin="1 5 1 2"
                           Padding="0">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="Margin" Value="-0"/>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
@@ -176,11 +206,13 @@
                           ItemTemplate="{StaticResource PlanDataTemplate}"
                           ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=Done}"
                           Loaded="DoneListView_OnLoaded"
-                          Margin="10"
+                          Margin="1 5 1 2"
                           Padding="0">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="Margin" Value="-0"/>
                         </Style>
                     </ListView.ItemContainerStyle>
 
