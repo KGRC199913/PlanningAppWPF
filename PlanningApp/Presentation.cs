@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PlanningApp
@@ -29,24 +30,29 @@ namespace PlanningApp
             get => _currentUser;
         }
 
+        public void AddPlan(Plan plan)
+        {
+            _bus.AddNewPlan(plan);
+            DisplayPlans = _bus.GetPlans();
+        }
+
         public bool Login(User user)
         {
-            if (_bus?.Login(user) == true)
-            {
-                _displayPlans = _bus.GetPlans();
-                return true;
-            }
-            return false;
+            if (_bus?.Login(user) != true) return false;
+            _displayPlans = _bus.GetPlans();
+            _currentUser = user;
+            return true;
         }
 
         public void Logout()
         {
-            throw new System.NotImplementedException();
+            _displayPlans = new BindingList<Plan>();
+            _currentUser = null;
         }
 
-        public void Signup()
+        public bool Signup(User signupUser)
         {
-            throw new System.NotImplementedException();
+            return _bus?.Signup(signupUser) == true;
         }
 
         public void ShowNotification(int timeout, string title, string message, string typeIcon)

@@ -102,11 +102,10 @@ namespace PlanningApp
 
         public bool Login(User loginUser)
         {
-            if (!_dao.CheckUserExist(loginUser)) return false;
+            if (!_dao.CheckUserValid(loginUser)) return false;
             _currentUser = loginUser;
             _plans = _dao.LoadPlans(_currentUser);
             return true;
-
         }
 
         public bool Signup(User signupUser)

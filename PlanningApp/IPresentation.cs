@@ -7,9 +7,10 @@ namespace PlanningApp
     {
         BindingList<Plan> DisplayPlans { get; set; }
         User CurrentUser { get; }
+        void AddPlan(Plan plan);
         bool Login(User user);
         void Logout();
-        void Signup();
+        bool Signup(User signupUser);
         void ShowNotification(int timeout, string title, string message, string typeIcon);
         void SavePlans();
     }

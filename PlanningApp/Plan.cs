@@ -99,5 +99,13 @@ namespace PlanningApp
                 OnPropertyChanged();
             }
         }
+
+        public bool Equals(object rhs)
+        {
+            if (!(rhs is Plan))
+                return false;
+            var other = (Plan) rhs;
+            return string.Equals(_title, other._title) && string.Equals(_detail, other._detail) && _startDateTime.Equals(other._startDateTime) && _endDateTime.Equals(other._endDateTime) && _priorityLevel == other._priorityLevel && _state == other._state && _isDisable == other._isDisable;
+        }
     }
 }

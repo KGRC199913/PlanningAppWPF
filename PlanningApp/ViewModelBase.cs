@@ -8,6 +8,7 @@ namespace PlanningApp
     [Serializable]
     public class ViewModelBase : INotifyPropertyChanged
     {
+        [field:NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

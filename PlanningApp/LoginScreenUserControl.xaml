@@ -91,6 +91,7 @@
                 Margin= "5 15"
                 ToolTip="Sign Up your Account."
                 Background="{DynamicResource SecondaryAccentBrush}"
+                Click="SignUpButton_OnClick"
             >
                 SIGN UP
             </Button>

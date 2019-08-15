@@ -13,9 +13,9 @@ namespace PlanningApp
             switch (priority)
             {
                 case PlanPriorityLevel.Low:
-                    return Brushes.White;
+                    return Brushes.Black;
                 case PlanPriorityLevel.Normal:
-                    return Brushes.WhiteSmoke;
+                    return Brushes.LightBlue;
                 case PlanPriorityLevel.High:
                     return Brushes.LightYellow;
                 case PlanPriorityLevel.Important:

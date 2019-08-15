@@ -18,6 +18,7 @@
              >
     <UserControl.Resources>
         <local:PriorityToColorConverter x:Key="ColorConverter"/>
+        <local:StateToVisibilityConverter x:Key="VisibilityConverter"/>
         <!-- Place Holder-->
         <DataTemplate x:Key="PlanDataTemplate">
             <materialDesign:Card
@@ -28,6 +29,7 @@
                 <DockPanel LastChildFill="False" Margin="10 0 10 0" >
                     <DockPanel DockPanel.Dock="Top" LastChildFill="False" >
                         <TextBlock DockPanel.Dock="Left" Text ="{Binding Title}" Style="{DynamicResource MaterialDesignTitleTextBlock}" />
+
                         <ProgressBar
                             DockPanel.Dock="Right"
                             Style="{StaticResource MaterialDesignCircularProgressBar}"
@@ -41,9 +43,6 @@
                         <materialDesign:PackIcon  Kind="Calendar" Opacity="1"/>
                         <TextBlock Text="{Binding EndDateTime, StringFormat=dd/MM/yyyy}"   FontStyle="Italic"  Opacity="0.7"/>
                     </StackPanel>
-                    
-                    
-
                 </DockPanel>
             </materialDesign:Card>
         </DataTemplate>
@@ -94,8 +93,9 @@
                           Grid.Row="1"
                           ItemTemplate="{StaticResource PlanDataTemplate}"
                           Margin="1 5 1 2"
-                          Padding="0"
-                >
+                          ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=ToDo}"
+                          Loaded="ToDoListView_OnLoaded"
+                          Padding="0">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -123,7 +123,6 @@
                     Grid.Row="0"
                     Background="YellowGreen"
                     Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                    
                     VerticalAlignment="Stretch" >
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="ProgressClock" Height="24" Width="24" VerticalAlignment="Center"/>
@@ -134,7 +133,18 @@
                     </StackPanel>
                 </materialDesign:Card>
                 <ListView x:Name="DoingListView"
-                          Grid.Row="1"/>
+                          Grid.Row="1"
+                          ItemTemplate="{StaticResource PlanDataTemplate}"
+                          ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=Doing}"
+                          Loaded="DoingListView_OnLoaded"
+                          Margin="10"
+                          Padding="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </Grid>
         </Border>
         <Border
@@ -162,7 +172,19 @@
                     </StackPanel>
                 </materialDesign:Card>
                 <ListView x:Name="DoneListView"
-                          Grid.Row="1"/>
+                          Grid.Row="1"
+                          ItemTemplate="{StaticResource PlanDataTemplate}"
+                          ItemsSource="{Binding DisplayPlans, Converter={StaticResource VisibilityConverter}, ConverterParameter=Done}"
+                          Loaded="DoneListView_OnLoaded"
+                          Margin="10"
+                          Padding="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                </ListView>
             </Grid>
         </Border>
 
@@ -296,9 +318,6 @@
                 
             </DockPanel>
         </materialDesign:ColorZone>
-
-
-
        <materialDesign:Flipper Grid.Column="2" HorizontalAlignment="Right" Grid.Row="0" Grid.RowSpan="3" Margin="0 0 10 0"  
                                 Style="{StaticResource MaterialDesignCardFlipper}">
             <materialDesign:Flipper.FrontContent >
@@ -348,8 +367,7 @@
                         Grid.Row="1"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Center">
-                            Binding Here
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding CurrentUser}">
                         </TextBlock>
                         <Button
                             x:Name="SignoutButton"
